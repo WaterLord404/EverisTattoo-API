@@ -2,6 +2,7 @@ package com.everis.tattoo.service;
 
 import java.util.List;
 
+import com.everis.tattoo.model.entity.Product;
 
 public interface ProductServiceI {
 

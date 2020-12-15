@@ -1,5 +1,7 @@
 package com.everis.tattoo.model.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,22 +11,25 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="product")
-public class Product {
+public class Product implements Serializable{
+
+	/** SERIAL ID */
+	private static final long serialVersionUID = -1646486138767949789L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column
+	@Column(nullable = false)
 	private String name;
 	
-	@Column
+	@Column(nullable = false)
 	private String category;
 	
 	@Column
 	private String description;
 	
-	@Column
+	@Column(nullable = false)
 	private double price;
 	
 	@Column

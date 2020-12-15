@@ -16,22 +16,28 @@ public class Product implements Serializable{
 	/** SERIAL ID */
 	private static final long serialVersionUID = -1646486138767949789L;
 
+	/** Product identifier (PK) */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	/** Name of the product */
 	@Column(nullable = false)
 	private String name;
 	
+	/** Category of the product */
 	@Column(nullable = false)
 	private String category;
 	
+	/** Description of the product */
 	@Column
 	private String description;
 	
+	/** Price of the product */
 	@Column(nullable = false)
 	private double price;
 	
+	/** Image of the product */
 	@Column
 	private String img;
 

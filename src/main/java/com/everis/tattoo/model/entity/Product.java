@@ -13,28 +13,19 @@ import javax.persistence.Table;
 @Table(name="PRODUCT_T")
 public class Product implements Serializable{
 
-	/**
-	 * 
-	 */
+	/* Serial */
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(nullable = false)
 	private String name;
 	
-	@Column(nullable = false)
 	private String category;
 	
-	@Column
 	private String description;
-	
-	@Column(nullable = false)
+
 	private double price;
 	
-	@Column
 	private String img;
 
 	public Product() { }
@@ -60,6 +51,7 @@ public class Product implements Serializable{
 
 	
 	/* Nombre del producto */
+	@Column(name = "NAME", nullable = false)
 	public String getName() {
 		return name;
 	}
@@ -68,6 +60,8 @@ public class Product implements Serializable{
 	}
 
 	
+	/* Categoria del producto */
+	@Column(name = "CATEGORY", nullable = false)
 	public String getCategory() {
 		return category;
 	}
@@ -76,14 +70,18 @@ public class Product implements Serializable{
 	}
 
 	
+	/* Descripcion del producto */
+	@Column(name = "DESCRIPTION")
 	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 	
+	
+	/* Precio del producto */
+	@Column(name = "PRICE", nullable = false)
 	public double getPrice() {
 		return price;
 	}
@@ -91,7 +89,9 @@ public class Product implements Serializable{
 		this.price = price;
 	}
 
-	
+
+	/* Imagen del producto */
+	@Column(name = "IMG")
 	public String getImg() {
 		return img;
 	}

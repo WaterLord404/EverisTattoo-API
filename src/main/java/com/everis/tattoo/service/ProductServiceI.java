@@ -27,14 +27,14 @@ public interface ProductServiceI {
 	 * 
 	 * @param product
 	 */
-	public void addProduct(final Product product);
+	public Product addProduct(final Product product);
 	
 	/**
 	 * Elimina un producto existente
 	 * 
 	 * @param id
 	 */
-	public void deleteProductById(final Long id);
+	public Product deleteProductById(final Long id);
 	
 
 	/**

@@ -24,19 +24,20 @@ public class ProductServiceImpl implements ProductServiceI {
 	@Override
 	public Product getProduct(final Long id) {
 
-		return productRepository.getOne(id);
+		return productRepository.findById(id).get();
 	}
 
 	@Override
-	public void addProduct(final Product product) {
-		
+	public Product addProduct(final Product product) {
 		productRepository.save(product);
+		return product;
 	}
 
 	@Override
-	public void deleteProductById(final Long id) {
-		
+	public Product deleteProductById(final Long id) {
+		Product product = productRepository.findById(id).get();
 		productRepository.deleteById(id);
+		return product;
 	}
 
 	/*

@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.everis.tattoo.model.entity.Product;
+import com.everis.tattoo.model.repository.ProductRepositoryI;
+
 @Service
 public class ProductServiceImpl implements ProductServiceI {
 
@@ -21,7 +24,7 @@ public class ProductServiceImpl implements ProductServiceI {
 	@Override
 	public Product getProduct(final Long id) {
 
-		return productRepository.findById(id);
+		return productRepository.getOne(id);
 	}
 
 	@Override

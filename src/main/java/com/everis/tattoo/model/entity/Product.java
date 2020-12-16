@@ -10,38 +10,33 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="PRODUCT_T")
-public class Product implements Serializable{
+@Table(name = "PRODUCT_T")
+public class Product implements Serializable {
 
 	/* Serial */
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
-	
+
 	private String name;
-	
+
 	private String category;
-	
+
 	private String description;
 
-	private double price;
-	
+	private Double price;
+
 	private String img;
 
-	public Product() { }
-	
-	public Product(String name, String category, String description, double price, String img) {
-		super();
-		this.name = name;
-		this.category = category;
-		this.description = description;
-		this.price = price;
-		this.img = img;
+	public Product() {
+		this.description = new String();
+		this.img = new String();
 	}
-	
+
 	/* PK */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID_PRODUCT")
 	public Long getId() {
 		return id;
 	}
@@ -78,18 +73,18 @@ public class Product implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	
 	/* Precio del producto */
 	@Column(name = "PRICE", nullable = false)
 	public double getPrice() {
 		return price;
 	}
-	public void setPrice(double price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 
-
+	
 	/* Imagen del producto */
 	@Column(name = "IMG")
 	public String getImg() {
@@ -98,5 +93,5 @@ public class Product implements Serializable{
 	public void setImg(String img) {
 		this.img = img;
 	}
-	
+
 }

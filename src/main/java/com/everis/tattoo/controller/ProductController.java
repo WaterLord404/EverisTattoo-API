@@ -1,5 +1,7 @@
 package com.everis.tattoo.controller;
 
+import java.util.NoSuchElementException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +18,7 @@ import com.everis.tattoo.model.entity.Product;
 import com.everis.tattoo.service.ProductServiceI;
 
 @RestController
-@RequestMapping(path = "/EverisTattoo")
+@RequestMapping(path = "/everis/tattoo")
 @CrossOrigin(origins = "*")
 public class ProductController {
 
@@ -36,28 +38,28 @@ public class ProductController {
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<?> getProduct(@PathVariable Long id) {
 		
-		return productService.getProduct(id) != null
-				? ResponseEntity.ok(productService.getProduct(id)) 
-				: ResponseEntity.notFound().build();
+		try {
+			return ResponseEntity.ok(productService.getProduct(id));
+		} catch (NoSuchElementException e) {
+			return ResponseEntity.notFound().build();
+		}
 	}
 
-	/* Añade un producto */
+	/* Añade un producto */	
 	@PostMapping
 	public ResponseEntity<?> addProduct(@RequestBody Product sentProduct) {
 		
-		Product product = productService.getProduct(sentProduct.getId());
-		
-		return product != null 
-				? ResponseEntity.status(HttpStatus.CREATED).body(product) 
-				: ResponseEntity.status(HttpStatus.CONFLICT).body(product);
+		return ResponseEntity.status(HttpStatus.CREATED).body(productService.addProduct(sentProduct)); 
 	}
 	
 	/* Borra un producto */
 	@DeleteMapping(path = "/{id}")
 	public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
 		
-		return productService.getProduct(id) != null 
-				? ResponseEntity.ok(productService.deleteProductById(id)) 
-				: ResponseEntity.notFound().build();
+		try {
+			return ResponseEntity.ok(productService.deleteProductById(id)) ;
+		} catch (NoSuchElementException e) {
+			return ResponseEntity.notFound().build();
+		}
 	}
 }

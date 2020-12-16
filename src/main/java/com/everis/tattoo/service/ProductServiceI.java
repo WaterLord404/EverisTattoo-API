@@ -5,7 +5,6 @@ import java.util.List;
 import com.everis.tattoo.model.entity.Product;
 
 public interface ProductServiceI {
-
 	
 	/**
 	 * Devuelve todos los productos existentes

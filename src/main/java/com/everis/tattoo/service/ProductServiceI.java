@@ -27,7 +27,7 @@ public interface ProductServiceI {
 	 * 
 	 * @param product
 	 */
-	public Product addProduct(final Product product);
+	public Product addProduct(final Product sentProduct);
 	
 	/**
 	 * Elimina un producto existente

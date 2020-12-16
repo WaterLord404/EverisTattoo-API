@@ -1,4 +1,4 @@
-package com.everis.tattoo.service;
+package com.everis.tattoo.service.impl;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.everis.tattoo.model.entity.Product;
 import com.everis.tattoo.model.repository.ProductRepositoryI;
+import com.everis.tattoo.service.ProductServiceI;
 
 @Service
 public class ProductServiceImpl implements ProductServiceI {
@@ -17,20 +18,17 @@ public class ProductServiceImpl implements ProductServiceI {
 
 	@Override
 	public List<Product> getAllProducts() {
-		
 		return productRepository.findAll();
 	}
 
 	@Override
 	public Product getProduct(final Long id) {
-
 		return productRepository.findById(id).get();
 	}
 
 	@Override
-	public Product addProduct(final Product product) {
-		productRepository.save(product);
-		return product;
+	public Product addProduct(final Product sentProduct) {
+		return productRepository.save(sentProduct);
 	}
 
 	@Override

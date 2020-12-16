@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.everis.tattoo.model.entity.Product;
 import com.everis.tattoo.service.ProductServiceI;
 
 @RestController
@@ -22,32 +23,41 @@ public class ProductController {
 	@Autowired
 	private ProductServiceI productService;
 
+	/* Obtiene los productos */
 	@GetMapping
 	public ResponseEntity<?> getAllProducts() {
-		return ResponseEntity.ok(productService.getAllProducts());
+		
+		return !productService.getAllProducts().isEmpty()
+				? ResponseEntity.ok(productService.getAllProducts())
+				: ResponseEntity.notFound().build();
 	}
 
+	/* Obtiene un producto */
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<?> getProduct(@PathVariable Long id) {
-		return (productService.getProduct(id) != null) ? 
-				ResponseEntity.ok(productService.getProduct(id)) : 
-					
-					ResponseEntity.notFound().build();
+		
+		return productService.getProduct(id) != null
+				? ResponseEntity.ok(productService.getProduct(id)) 
+				: ResponseEntity.notFound().build();
 	}
 
+	/* Añade un producto */
 	@PostMapping
-	public ResponseEntity<?> addProduct(@RequestBody ProductController product) {
-		return (productService.getProduct(product.getId()) == null) ? 
-				ResponseEntity.status(HttpStatus.CREATED).body(productService.addProduct(product)) :
-		        	
-					ResponseEntity.status(HttpStatus.CONFLICT);
+	public ResponseEntity<?> addProduct(@RequestBody Product sentProduct) {
+		
+		Product product = productService.getProduct(sentProduct.getId());
+		
+		return product != null 
+				? ResponseEntity.status(HttpStatus.CREATED).body(product) 
+				: ResponseEntity.status(HttpStatus.CONFLICT).body(product);
 	}
 	
+	/* Borra un producto */
 	@DeleteMapping(path = "/{id}")
 	public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
-		return (productService.getProduct(id) != null) ? 
-				ResponseEntity.ok(productService.deleteProductById(id)) : 
-					
-					ResponseEntity.notFound().build();
+		
+		return productService.getProduct(id) != null 
+				? ResponseEntity.ok(productService.deleteProductById(id)) 
+				: ResponseEntity.notFound().build();
 	}
 }

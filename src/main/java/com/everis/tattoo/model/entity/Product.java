@@ -10,81 +10,91 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="product")
+@Table(name="PRODUCT_T")
 public class Product implements Serializable{
 
-	/** SERIAL ID */
-	private static final long serialVersionUID = -1646486138767949789L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-	/** Product identifier (PK) */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	/** Name of the product */
 	@Column(nullable = false)
 	private String name;
 	
-	/** Category of the product */
 	@Column(nullable = false)
 	private String category;
 	
-	/** Description of the product */
 	@Column
 	private String description;
 	
-	/** Price of the product */
 	@Column(nullable = false)
 	private double price;
 	
-	/** Image of the product */
 	@Column
 	private String img;
 
+	public Product() { }
+	
+	public Product(String name, String category, String description, double price, String img) {
+		super();
+		this.name = name;
+		this.category = category;
+		this.description = description;
+		this.price = price;
+		this.img = img;
+	}
+	
+	/* PK */
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+	
+	/* Nombre del producto */
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	
 	public String getCategory() {
 		return category;
 	}
-
 	public void setCategory(String category) {
 		this.category = category;
 	}
 
+	
 	public String getDescription() {
 		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
+	
 	public double getPrice() {
 		return price;
 	}
-
 	public void setPrice(double price) {
 		this.price = price;
 	}
 
+	
 	public String getImg() {
 		return img;
 	}
-
 	public void setImg(String img) {
 		this.img = img;
 	}

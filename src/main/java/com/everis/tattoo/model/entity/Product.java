@@ -1,12 +1,18 @@
 package com.everis.tattoo.model.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,6 +33,8 @@ public class Product implements Serializable {
 	private Double price;
 
 	private String img;
+	
+	private List<Client> clients = new ArrayList<Client>();
 
 	public Product() {
 		this.description = new String();
@@ -92,6 +100,21 @@ public class Product implements Serializable {
 	}
 	public void setImg(String img) {
 		this.img = img;
+	}
+
+	
+	@ManyToMany(cascade = {CascadeType.ALL})
+	@JoinTable(name="PRODUCT_CLIENT", joinColumns={@JoinColumn(name="ID_PRODUCT")}, inverseJoinColumns={@JoinColumn(name="ID_CLIENT")})
+	public List<Client> getClients() {
+		return clients;
+	}
+	public void setClients(List<Client> clients) {
+		this.clients = clients;
+	}
+
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 }

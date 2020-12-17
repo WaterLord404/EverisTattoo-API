@@ -35,21 +35,4 @@ public interface ProductServiceI {
 	 */
 	public Product deleteProductById(final Long id);
 	
-
-	/**
-	 * Obtiene productos mediante su categoria
-	 * 
-	 * @param category
-	 * @return List<Product>
-	 */
-//	public List<Product> getProductByCategory(final String category);
-
-
-	/**
-	 * Actualiza datos de un producto existente
-	 * 
-	 * @param product
-	 */
-//	public void updProduct(final Product product); 
-
 }

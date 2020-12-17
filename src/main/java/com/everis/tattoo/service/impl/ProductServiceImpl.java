@@ -38,19 +38,4 @@ public class ProductServiceImpl implements ProductServiceI {
 		return product;
 	}
 
-	/*
-	 * 
-	 * @Override public List<Product> getProductByCategory(final String category) {
-	 * 
-	 * return productRepository.findByCategory(category); 
-	 * 
-	 * }
-	 * 
-	 * @Override public void updProduct(final Product product) {
-	 * 
-	 * productRepository.save(product);
-	}
-	 * 
-	 */
-
 }
